@@ -1,21 +1,22 @@
 import React, { Component } from "react";
-import logo from "./logo.svg";
-import "./App.css";
+import {useDispatch, useSelector} from "react-redux";
+import {DeleteAction, InsertAction, SessionAction} from "./index";
 
-class App extends Component {
-  render() {
+  const App = () =>{
+    const operation = useSelector(state => state);
+    const dispatch = useDispatch();
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+        <h2>This is from App Component</h2>
+        <h3>{operation.message}</h3>
+        <button onClick = {() => dispatch(SessionAction())}>{operation.islogged ? "LogOut" : "LogIn"}</button>
+        <div >
+            <button onClick = {() => dispatch(DeleteAction())}>Delete</button> 
+            <button onClick = {() => dispatch(InsertAction())}>Insert</button>
+        </div>
       </div>
     );
   }
-}
+
 
 export default App;
