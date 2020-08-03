@@ -20,6 +20,8 @@ export const DeleteAction = () => ({type:DeleteOperation})
 export const InsertAction = () => ({type:InsertOperation})
 export const SessionAction = () => ({type:SessionOperation})
 
+//
+
 
 const initialValue ={
     message : "No Operation Choosen",
@@ -31,7 +33,7 @@ const ActionReducer = (state = initialValue,actions) =>{
         case SessionOperation:
             return{
                 ...state,
-                message : "Your Session is Started",
+                message : (!state.islogged ? "Your Session is Started" : "Your Session is Ended"),              
                 islogged : !state.islogged
             } 
         case DeleteOperation:
